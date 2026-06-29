@@ -135,6 +135,10 @@ After the top structure, keep these sections in this order unless the project ty
 - English README references `en` images.
 - If no public GitHub repository exists yet, omit live CI/stars/star-history badges instead of inventing URLs.
 - If a public GitHub repository exists, include PRs, CI, Stars, Issues, PR, and Star History links.
+- If a public GitHub repository exists, configure repository metadata after push:
+  - About description: one concise English value proposition.
+  - Topics: 8-10 discovery topics.
+  - Homepage URL: normally `https://github.com/<owner>/<repo>` so the About sidebar shows a clickable link.
 
 ## Content Quality Rules
 
@@ -167,6 +171,7 @@ If the project has a local README gate, run it too. Also verify:
 
 - `docs/README_en.md` exists when the root README links English docs.
 - `docs/README_en.md` is structurally equivalent to the root README and uses English `en` image assets.
+- Public GitHub repository metadata is configured: About description, Topics, and Homepage URL.
 - Main README display image paths exist.
 - Social preview exists at `assets/social-preview.*` and is referenced near the top of README.
 - `assets/social-preview.png`, when present, is smaller than 1 MiB (`1048576` bytes).

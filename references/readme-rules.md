@@ -28,6 +28,7 @@ Follow the shared README style and gate:
 - Add `docs/README_en.md` and link it from the root language navigation.
 - `docs/README_en.md` must be a complete English counterpart, not a short summary. Keep the same open-source README structure as the root README: social preview, hero, nav, badges, main image, pain points, overview, features, comparison, workflow, quick start, modules, tech stack, architecture, directory, command reference, development guide, validation, status, FAQ, contribution, version, acknowledgements, Star History, license, and author.
 - Reference `zh-CN` images from Chinese README files and `en` images from the English README.
+- For public GitHub repositories, configure repo About metadata after push with `gh repo edit`: description, Topics, and Homepage URL. The Homepage URL should normally be the repository URL itself, e.g. `https://github.com/<owner>/<repo>`, so the GitHub About sidebar shows the clickable link.
 
 ## Root README Image Paths
 
@@ -75,3 +76,8 @@ Run:
 
 If the project has subproject README files, run the same gate for each one.
 When `docs/README_en.md` exists, inspect it for structural parity with the root README; do not treat a short English abstract as a valid English README.
+For public GitHub release, verify the repository metadata too:
+
+```bash
+gh repo view <owner>/<repo> --json description,homepageUrl,repositoryTopics
+```
