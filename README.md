@@ -3,6 +3,10 @@
 <!-- Keywords: claude-code skill, ai agent scaffold, platform project template, SKILL.md, omni-platform, codex skill, cursor skill, legacy codebase AI upgrade, AGENTS.md generator, CLAUDE.md generator, project scaffolding, developer tools, ai-assisted development -->
 
 <div align="center">
+  <img src="./assets/social-preview.svg" alt="Platform Project Skill — scaffold platform projects and upgrade legacy codebases for AI agents" width="100%">
+</div>
+
+<div align="center">
   <strong>Scaffold any platform project · Upgrade any legacy codebase for AI agents — in one command</strong>
   <br>
   <em>给你的 AI Agent 装上平台项目初始化能力：新项目一条命令建好骨架，老项目一条命令补齐 AI 接手层</em>

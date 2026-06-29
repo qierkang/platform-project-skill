@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', system-ui, sans-serif">
+  <rect x="0" y="0" width="1280" height="640" fill="#0d1326"/>
+  <rect x="0" y="0" width="1280" height="6" fill="#d97757"/>
+
+  <!-- badge -->
+  <rect x="88" y="72" width="298" height="36" rx="18" fill="#161d33" stroke="#2a3350" stroke-width="1"/>
+  <circle cx="110" cy="90" r="4.5" fill="#7fd4a0"/>
+  <text x="126" y="96" font-family="ui-monospace, Menlo, monospace" font-size="16" fill="#9aa4bd">SKILL.md · AI agent skill</text>
+
+  <!-- title -->
+  <text x="86" y="208" font-size="74" font-weight="600" letter-spacing="-1.5" fill="#ffffff">Platform Project Skill</text>
+
+  <!-- taglines -->
+  <text x="88" y="262" font-size="25" fill="#aab4cc">Scaffold any platform project · Upgrade any legacy codebase for AI agents</text>
+  <text x="88" y="304" font-size="25" fill="#aab4cc">新项目一条命令建好骨架，老项目一条命令补齐 AI 接手层</text>
+
+  <!-- terminal -->
+  <rect x="88" y="352" width="772" height="108" rx="14" fill="#161d33" stroke="#2a3350" stroke-width="1"/>
+  <circle cx="120" cy="382" r="6" fill="#ff5f56"/>
+  <circle cx="141" cy="382" r="6" fill="#ffbd2e"/>
+  <circle cx="162" cy="382" r="6" fill="#27c93f"/>
+  <text x="116" y="430" font-family="ui-monospace, Menlo, monospace" font-size="25" fill="#c8d1e8"><tspan fill="#d97757">$ </tspan>create-platform-project.sh <tspan fill="#7fd4a0">my-platform</tspan></text>
+
+  <!-- pills -->
+  <g font-size="19" fill="#aab4cc" text-anchor="middle">
+    <rect x="88"  y="496" width="158" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="167" y="522">Claude Code</text>
+    <rect x="260" y="496" width="92"  height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="306" y="522">Codex</text>
+    <rect x="366" y="496" width="104" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="418" y="522">Cursor</text>
+    <rect x="484" y="496" width="116" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="542" y="522">Offline</text>
+    <rect x="614" y="496" width="74"  height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="651" y="522">MIT</text>
+  </g>
+
+  <!-- scaffold tags (top row, aligned with badge) -->
+  <g font-family="ui-monospace, Menlo, monospace" font-size="15" text-anchor="middle">
+    <rect x="864" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#d97757" stroke-width="1.5"/>
+    <text x="914" y="95" fill="#d97757">front</text>
+    <rect x="978" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="1028" y="95" fill="#5b8def">server</text>
+    <rect x="1092" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#7fd4a0" stroke-width="1.5"/>
+    <text x="1142" y="95" fill="#7fd4a0">mobile</text>
+  </g>
+</svg>
