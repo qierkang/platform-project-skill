@@ -1,0 +1,14 @@
+node_modules
+dist
+.DS_Store
+.env
+.env.local
+coverage
+tmp/*
+screenshots/*
+assets/**/*.tmp
+graphify-out/*
+!tmp/.gitkeep
+!screenshots/.gitkeep
+!graphify-out/
+!graphify-out/GRAPH_REPORT.md

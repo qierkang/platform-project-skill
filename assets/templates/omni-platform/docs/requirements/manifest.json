@@ -1,0 +1,15 @@
+{
+  "request_key": "omni-platform-formal-template",
+  "title": "omni-platform 正式平台母版打磨",
+  "owner": "xyqierkang@gmail（claude+codex）",
+  "workflow": "new-project",
+  "platforms": [
+    "web",
+    "h5",
+    "api"
+  ],
+  "priority": "P0",
+  "status": "in_progress",
+  "created_at": "2026-06-25",
+  "updated_at": "2026-06-25"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "omni-platform",
+  "version": "1.0.0-alpha",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "doctor": "bash ./scripts/util-doctor.sh",
+    "install:all": "pnpm -r install",
+    "dev:front": "pnpm --filter omni-platform-front dev",
+    "dev:mobile": "pnpm --filter omni-platform-mobile dev",
+    "dev:server": "pnpm --filter omni-platform-server dev",
+    "build": "pnpm -r build",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down"
+  }
+}

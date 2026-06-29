@@ -1,0 +1,4 @@
+packages:
+  - omni-platform-front
+  - omni-platform-mobile
+  - omni-platform-server

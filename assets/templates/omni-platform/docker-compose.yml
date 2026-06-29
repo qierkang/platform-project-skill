@@ -1,0 +1,100 @@
+services:
+  omni-platform-postgres:
+    image: postgres:16-alpine
+    container_name: omni-platform-postgres
+    restart: unless-stopped
+    ports:
+      - "${POSTGRES_PORT:-55432}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-omni_platform}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - omni-platform-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-omni_platform}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  omni-platform-redis:
+    image: redis:7-alpine
+    container_name: omni-platform-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-56379}:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - omni-platform-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  omni-platform-server:
+    build:
+      context: ./omni-platform-server
+      dockerfile: Dockerfile
+    container_name: omni-platform-server
+    restart: unless-stopped
+    ports:
+      - "${SERVER_PORT:-7060}:7060"
+    environment:
+      PROJECT_NAME: ${PROJECT_NAME:-Omni Platform}
+      PROJECT_SLUG: ${PROJECT_SLUG:-omni-platform}
+      PROJECT_VERSION: ${PROJECT_VERSION:-1.0.0-alpha}
+      SERVER_PORT: ${SERVER_PORT:-7060}
+      FRONT_PORT: ${FRONT_PORT:-7061}
+      MOBILE_PORT: ${MOBILE_PORT:-7062}
+      POSTGRES_HOST: omni-platform-postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-omni_platform}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      REDIS_HOST: omni-platform-redis
+      REDIS_PORT: 6379
+    depends_on:
+      omni-platform-postgres:
+        condition: service_healthy
+      omni-platform-redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:7060/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  omni-platform-front:
+    build:
+      context: ./omni-platform-front
+      dockerfile: Dockerfile
+    container_name: omni-platform-front
+    restart: unless-stopped
+    ports:
+      - "${FRONT_PORT:-7061}:7061"
+    environment:
+      FRONT_PORT: ${FRONT_PORT:-7061}
+      VITE_API_BASE_URL: ${API_BASE_URL:-http://127.0.0.1:7060}
+    depends_on:
+      omni-platform-server:
+        condition: service_healthy
+
+  omni-platform-mobile:
+    build:
+      context: ./omni-platform-mobile
+      dockerfile: Dockerfile
+    container_name: omni-platform-mobile
+    restart: unless-stopped
+    ports:
+      - "${MOBILE_PORT:-7062}:7062"
+    environment:
+      MOBILE_PORT: ${MOBILE_PORT:-7062}
+      VITE_API_BASE_URL: ${API_BASE_URL:-http://127.0.0.1:7060}
+    depends_on:
+      omni-platform-server:
+        condition: service_healthy
+
+volumes:
+  omni-platform-postgres-data:
+  omni-platform-redis-data:

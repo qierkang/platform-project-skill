@@ -1,0 +1,32 @@
+# 系统噪音
+.DS_Store
+Thumbs.db
+
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# 环境与密钥（绝不提交真实环境文件）
+.env
+.env.local
+.env.*.local
+
+# 临时文件
+tmp/
+*.tmp
+*.log
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# skill 运行期临时产物（母版与生成项目自带各自 .gitignore）
+**/.asset-todo.json.bak

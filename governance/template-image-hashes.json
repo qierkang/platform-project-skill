@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-26",
+  "source": "assets/templates/omni-platform/",
+  "note": "派生项目的图片 sha256 不允许与本表任意条目相同（视为占位图未替换）。`sync-omni-template.sh` 会自动刷新本文件。",
+  "images": [
+    {
+      "path": "assets/omni-platform-front/design/front-ui-design-draft.png",
+      "sha256": "c145b1dcae91a3b754be44abe0bf4989493b1416670008696d04a857058a6d75",
+      "size": 2243810
+    },
+    {
+      "path": "assets/omni-platform-front/screenshots/front-dashboard-concept.png",
+      "sha256": "30a48a9061069e847f2369fbf3a007286c51305162e5d57aab4ab792549a4f86",
+      "size": 2406195
+    },
+    {
+      "path": "assets/omni-platform-mobile/design/mobile-ui-design-draft.png",
+      "sha256": "0f849b4c7848c35769ca527afe117fd9e4d9c61743bcdc5fc59b8b818ba52417",
+      "size": 2441246
+    },
+    {
+      "path": "assets/omni-platform-mobile/screenshots/mobile-home-concept.png",
+      "sha256": "da82b88c3c6762ca2a0e9263cf3c67a90cd04af0d196bfc7423e3fd9a1035d40",
+      "size": 2668250
+    },
+    {
+      "path": "assets/omni-platform-server/architecture/server-architecture-concept.png",
+      "sha256": "8b1e8a4def71149fc397d960ad933dcd3a2b96d68d1a53786736c341f0e3692f",
+      "size": 2372864
+    },
+    {
+      "path": "assets/platform/architecture/omni-platform-overview.png",
+      "sha256": "548665f709c4d1fd55693f95fb7fedb2351ba590c2063190d10b2387c5230fab",
+      "size": 1770427
+    },
+    {
+      "path": "assets/platform/design/omni-platform-design-baseline.png",
+      "sha256": "abf88308e8f004f8f5343a6b250e08370eb055caab6275af4561858b4ea4d4cb",
+      "size": 2344640
+    }
+  ]
+}

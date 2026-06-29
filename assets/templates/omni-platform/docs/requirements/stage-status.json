@@ -1,0 +1,19 @@
+{
+  "request_key": "omni-platform-formal-template",
+  "current_stage": "design",
+  "status": "IN_PROGRESS",
+  "updated_at": "2026-06-25",
+  "stages": {
+    "requirement": "done",
+    "design": "done",
+    "task_breakdown": "done",
+    "development": "in_progress",
+    "self_test": "todo",
+    "code_review": "todo",
+    "smoke_test": "todo",
+    "qa_acceptance": "todo",
+    "ui_acceptance": "todo",
+    "product_acceptance": "todo",
+    "release": "in_progress"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // empty' | grep -qE '\\.(vue|js|ts|jsx|tsx|py|go|java|rs)$' && cd \"${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}\" && command -v python3 >/dev/null 2>&1 && python3 -c \"from graphify.watch import _rebuild_code; from pathlib import Path; _rebuild_code(Path('.'))\" 2>/dev/null || true",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
