@@ -35,13 +35,13 @@
     <text x="651" y="522">MIT</text>
   </g>
 
-  <!-- scaffold tags (top row, aligned with badge) -->
+  <!-- scaffold tags (top row, right after the badge) -->
   <g font-family="ui-monospace, Menlo, monospace" font-size="15" text-anchor="middle">
-    <rect x="864" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#d97757" stroke-width="1.5"/>
-    <text x="914" y="95" fill="#d97757">front</text>
-    <rect x="978" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="1028" y="95" fill="#5b8def">server</text>
-    <rect x="1092" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#7fd4a0" stroke-width="1.5"/>
-    <text x="1142" y="95" fill="#7fd4a0">mobile</text>
+    <rect x="420" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#d97757" stroke-width="1.5"/>
+    <text x="470" y="95" fill="#d97757">front</text>
+    <rect x="534" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="584" y="95" fill="#5b8def">server</text>
+    <rect x="648" y="72" width="100" height="36" rx="10" fill="#161d33" stroke="#7fd4a0" stroke-width="1.5"/>
+    <text x="698" y="95" fill="#7fd4a0">mobile</text>
   </g>
 </svg>
