@@ -25,7 +25,7 @@
 
 先看整体平台分层，再理解当前服务端在多端体系中的职责边界。
 
-![项目架构图](../assets/platform/architecture/omni-platform-overview.png)
+![项目架构图](../assets/platform/architecture/zh-CN/omni-platform-overview.png)
 
 ## 📋 项目概述
 
@@ -61,7 +61,7 @@ curl http://127.0.0.1:7060/meta
 
 ### 架构预览
 
-![服务端架构图](../assets/omni-platform-server/architecture/server-architecture-concept.png)
+![服务端架构图](../assets/omni-platform-server/architecture/zh-CN/server-architecture-concept.png)
 
 ## 🚦 项目状态
 

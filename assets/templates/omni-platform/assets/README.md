@@ -8,23 +8,24 @@
 - 根级统一管理：所有图片都放在根目录 `assets/` 下，避免三端各自复制。
 - 按作用域分区：平台总图放 `platform/`，子项目专属图放各自目录。
 - README 可直接引用：根 README 用 `./assets/...`，子项目 README 用 `../assets/...`。
+- 双语成对生成：每类图片都保留 `zh-CN/` 与 `en/` 两个版本。
 
 ## 当前目录约定
 
 ```text
 assets/
 ├── platform/
-│   ├── architecture/
-│   ├── design/
+│   ├── architecture/{zh-CN,en}/
+│   ├── design/{zh-CN,en}/
 │   └── flow/
 ├── omni-platform-front/
-│   ├── screenshots/
-│   └── design/
+│   ├── screenshots/{zh-CN,en}/
+│   └── design/{zh-CN,en}/
 ├── omni-platform-mobile/
-│   ├── screenshots/
-│   └── design/
+│   ├── screenshots/{zh-CN,en}/
+│   └── design/{zh-CN,en}/
 └── omni-platform-server/
-    ├── architecture/
+    ├── architecture/{zh-CN,en}/
     └── api/
 ```
 
@@ -64,37 +65,29 @@ assets/
 ### 根目录 README
 
 ```md
-![平台总架构图](./assets/platform/architecture/omni-platform-overview.png)
+![平台总架构图](./assets/platform/architecture/zh-CN/omni-platform-overview.png)
 ```
 
 ### 管理端 README
 
 ```md
-![平台总架构图](../assets/platform/architecture/omni-platform-overview.png)
+![平台总架构图](../assets/platform/architecture/zh-CN/omni-platform-overview.png)
 ```
 
 ### 管理端专属截图
 
 ```md
-![管理端首页截图](../assets/omni-platform-front/screenshots/front-home.png)
+![管理端首页截图](../assets/omni-platform-front/screenshots/zh-CN/front-home.png)
 ```
 
 ## 当前已生成资产
 
-- 平台总图：
-  - `assets/platform/architecture/omni-platform-overview.png`
-- 平台设计基线图：
-  - `assets/platform/design/omni-platform-design-baseline.png`
-- 管理端示意图：
-  - `assets/omni-platform-front/screenshots/front-dashboard-concept.png`
-- 管理端 UI 设计稿：
-  - `assets/omni-platform-front/design/front-ui-design-draft.png`
-- 移动端示意图：
-  - `assets/omni-platform-mobile/screenshots/mobile-home-concept.png`
-- 移动端 UI 设计稿：
-  - `assets/omni-platform-mobile/design/mobile-ui-design-draft.png`
-- 服务端架构图：
-  - `assets/omni-platform-server/architecture/server-architecture-concept.png`
+每类资产均保留两份：
+
+- 简体中文：`<category>/zh-CN/<filename>.png`
+- English：`<category>/en/<filename>.png`
+
+新项目共需生成 7 类 × 2 语言 = 14 张图片，并全部登记到 `asset-manifest.json`。
 
 ## 结论
 

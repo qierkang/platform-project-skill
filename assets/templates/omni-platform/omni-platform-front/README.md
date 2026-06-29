@@ -24,9 +24,9 @@
 
 先看整体平台分层，再回到当前管理端在其中承担的角色。
 
-![管理端示意图](../assets/omni-platform-front/screenshots/front-dashboard-concept.png)
+![管理端示意图](../assets/omni-platform-front/screenshots/zh-CN/front-dashboard-concept.png)
 
-![管理端 UI 设计稿](../assets/omni-platform-front/design/front-ui-design-draft.png)
+![管理端 UI 设计稿](../assets/omni-platform-front/design/zh-CN/front-ui-design-draft.png)
 
 ## 📋 项目概述
 
@@ -55,12 +55,12 @@
 
 ### 截图预览
 
-![项目架构图](../assets/platform/architecture/omni-platform-overview.png)
-![管理端示意图](../assets/omni-platform-front/screenshots/front-dashboard-concept.png)
-![管理端 UI 设计稿](../assets/omni-platform-front/design/front-ui-design-draft.png)
+![项目架构图](../assets/platform/architecture/zh-CN/omni-platform-overview.png)
+![管理端示意图](../assets/omni-platform-front/screenshots/zh-CN/front-dashboard-concept.png)
+![管理端 UI 设计稿](../assets/omni-platform-front/design/zh-CN/front-ui-design-draft.png)
 
-- 当前示意图已落到 `../assets/omni-platform-front/screenshots/front-dashboard-concept.png`
-- 当前 UI 设计稿已落到 `../assets/omni-platform-front/design/front-ui-design-draft.png`
+- 当前示意图已落到 `../assets/omni-platform-front/screenshots/zh-CN/front-dashboard-concept.png`
+- 当前 UI 设计稿已落到 `../assets/omni-platform-front/design/zh-CN/front-ui-design-draft.png`
 
 ## 🚦 项目状态
 

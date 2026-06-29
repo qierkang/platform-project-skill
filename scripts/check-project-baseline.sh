@@ -67,7 +67,7 @@ while IFS= read -r line; do
   if [[ "${#noise_lines[@]}" -ge 50 ]]; then
     break
   fi
-done < <(find "$PROJECT_PATH" \( -name ".DS_Store" -o -name "node_modules" -o -name "dist" \) -prune -print 2>/dev/null || true)
+done < <(find "$PROJECT_PATH" -path "$PROJECT_PATH/tmp" -prune -o \( -name ".DS_Store" -o -name "node_modules" -o -name "dist" \) -prune -print 2>/dev/null || true)
 
 if [[ "${#noise_lines[@]}" -gt 0 ]]; then
   if [[ "$MODE" == "existing" ]]; then
@@ -96,7 +96,7 @@ done < <(grep -rIn \
   --include="*.json" --include="*.ts" --include="*.tsx" \
   --include="*.js" --include="*.jsx" --include="*.sh" \
   --exclude-dir=node_modules --exclude-dir=dist \
-  --exclude-dir=.git --exclude-dir=graphify-out \
+  --exclude-dir=.git --exclude-dir=graphify-out --exclude-dir=tmp \
   --exclude-dir=governance --exclude-dir=references \
   --exclude="check-project-baseline.sh" \
   -E "$FORBIDDEN_RESIDUE_PATTERN" \
@@ -128,7 +128,7 @@ bad = []
 missing_images = []
 skip_dirs = {
     "assets", "references", "examples", "governance",
-    "node_modules", "dist", "graphify-out", ".git",
+    "node_modules", "dist", "graphify-out", ".git", "tmp",
 }
 for path in root.rglob("README.md"):
     if any(part in skip_dirs for part in path.relative_to(root).parts[:-1]):

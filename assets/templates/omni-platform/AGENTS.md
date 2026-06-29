@@ -103,8 +103,9 @@ docs/
 
 ## 设计图生成规则
 
-1. 平台母版默认至少保留一张“平台设计基线图”，固定放到 `assets/platform/design/omni-platform-design-baseline.png`
-2. 如果存在管理端子项目，默认补一张偏 UI 设计稿风格的管理端图，固定放到 `assets/omni-platform-front/design/front-ui-design-draft.png`
-3. 如果存在移动端子项目，默认补一张偏 UI 设计稿风格的移动端图，固定放到 `assets/omni-platform-mobile/design/mobile-ui-design-draft.png`
+1. 每类 README 图片必须生成 `zh-CN` 和 `en` 两套；默认中文 README 引用中文图，`docs/README_en.md` 引用英文图
+2. 平台母版设计基线图放到 `assets/platform/design/{zh-CN,en}/omni-platform-design-baseline.png`
+3. 管理端 UI 图放到 `assets/omni-platform-front/design/{zh-CN,en}/front-ui-design-draft.png`
+4. 移动端 UI 图放到 `assets/omni-platform-mobile/design/{zh-CN,en}/mobile-ui-design-draft.png`
 4. 上述图片必须通过 `image_gen` 生成最终视觉图，不得用 Mermaid、SVG、HTML 截图或本地脚本伪装成最终图片
 5. 新增设计图后，必须同步更新 `assets/README.md`、根 README 和对应子项目 README 的引用路径

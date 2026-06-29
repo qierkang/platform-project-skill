@@ -7,6 +7,9 @@ All notable changes to this project are documented here. Format based on [Keep a
 ## [Unreleased]
 
 ### Added
+- 双语 README 架构图资产：从 GitHub v0.3.0 恢复 4 张原始中文图，并保留 4 张英文图，按 `assets/architecture/{zh-CN,en}/` 分区登记
+- 新项目双语图片契约：7 类必需图片均生成 `zh-CN` 与 `en` 两套，共 14 张；默认中文 README 使用中文图，英文 README 使用英文图
+- 项目概述英文 TL;DR 下方新增 Star 引导文案
 - 多语言文档：英文 `docs/README_en.md`、繁体中文 `docs/README_zh-tw.md`，支持国际用户与英文 SEO
 - GitHub Actions CI 工作流（`.github/workflows/ci.yml`）：脚本语法检查 + README gate
 - `LICENSE`（MIT）写入 skill 根目录与 `omni-platform` 母版，新项目自动继承

@@ -2,19 +2,39 @@
   "schema_version": 1,
   "project_slug": "__PROJECT_SLUG__",
   "generated_at": null,
-  "note": "本文件由 platform-project-skill 创建。每张应由 image_gen 生成的图必须在派生后调用 register-asset.sh 登记。verify-assets.sh 会校验 required 全部 generated_at != null 且 sha256 不在 governance/template-image-hashes.json 中。",
+  "note": "platform-project-skill 创建的双语资产清单。7 类图片必须分别生成 zh-CN 与 en 版本，并通过 register-asset.sh 登记。",
   "required": [
     {
       "image_type": "platform-architecture",
-      "path": "assets/platform/architecture/__PROJECT_SLUG__-overview.png",
-      "prompt_file": "assets/platform/architecture/__PROJECT_SLUG__-overview-prompt.md",
+      "locale": "zh-CN",
+      "path": "assets/platform/architecture/zh-CN/__PROJECT_SLUG__-overview.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-zh-CN.md",
+      "generated_at": null,
+      "sha256": null,
+      "generated_by": null
+    },
+    {
+      "image_type": "platform-architecture",
+      "locale": "en",
+      "path": "assets/platform/architecture/en/__PROJECT_SLUG__-overview.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-en.md",
       "generated_at": null,
       "sha256": null,
       "generated_by": null
     },
     {
       "image_type": "platform-design-baseline",
-      "path": "assets/platform/design/__PROJECT_SLUG__-design-baseline.png",
+      "locale": "zh-CN",
+      "path": "assets/platform/design/zh-CN/__PROJECT_SLUG__-design-baseline.png",
+      "prompt_file": null,
+      "generated_at": null,
+      "sha256": null,
+      "generated_by": null
+    },
+    {
+      "image_type": "platform-design-baseline",
+      "locale": "en",
+      "path": "assets/platform/design/en/__PROJECT_SLUG__-design-baseline.png",
       "prompt_file": null,
       "generated_at": null,
       "sha256": null,
@@ -22,7 +42,17 @@
     },
     {
       "image_type": "front-ui-draft",
-      "path": "assets/__PROJECT_FRONT__/design/front-ui-design-draft.png",
+      "locale": "zh-CN",
+      "path": "assets/__PROJECT_FRONT__/design/zh-CN/front-ui-design-draft.png",
+      "prompt_file": null,
+      "generated_at": null,
+      "sha256": null,
+      "generated_by": null
+    },
+    {
+      "image_type": "front-ui-draft",
+      "locale": "en",
+      "path": "assets/__PROJECT_FRONT__/design/en/front-ui-design-draft.png",
       "prompt_file": null,
       "generated_at": null,
       "sha256": null,
@@ -30,7 +60,17 @@
     },
     {
       "image_type": "front-dashboard-concept",
-      "path": "assets/__PROJECT_FRONT__/screenshots/front-dashboard-concept.png",
+      "locale": "zh-CN",
+      "path": "assets/__PROJECT_FRONT__/screenshots/zh-CN/front-dashboard-concept.png",
+      "prompt_file": null,
+      "generated_at": null,
+      "sha256": null,
+      "generated_by": null
+    },
+    {
+      "image_type": "front-dashboard-concept",
+      "locale": "en",
+      "path": "assets/__PROJECT_FRONT__/screenshots/en/front-dashboard-concept.png",
       "prompt_file": null,
       "generated_at": null,
       "sha256": null,
@@ -38,7 +78,17 @@
     },
     {
       "image_type": "mobile-ui-draft",
-      "path": "assets/__PROJECT_MOBILE__/design/mobile-ui-design-draft.png",
+      "locale": "zh-CN",
+      "path": "assets/__PROJECT_MOBILE__/design/zh-CN/mobile-ui-design-draft.png",
+      "prompt_file": null,
+      "generated_at": null,
+      "sha256": null,
+      "generated_by": null
+    },
+    {
+      "image_type": "mobile-ui-draft",
+      "locale": "en",
+      "path": "assets/__PROJECT_MOBILE__/design/en/mobile-ui-design-draft.png",
       "prompt_file": null,
       "generated_at": null,
       "sha256": null,
@@ -46,7 +96,17 @@
     },
     {
       "image_type": "mobile-home-concept",
-      "path": "assets/__PROJECT_MOBILE__/screenshots/mobile-home-concept.png",
+      "locale": "zh-CN",
+      "path": "assets/__PROJECT_MOBILE__/screenshots/zh-CN/mobile-home-concept.png",
+      "prompt_file": null,
+      "generated_at": null,
+      "sha256": null,
+      "generated_by": null
+    },
+    {
+      "image_type": "mobile-home-concept",
+      "locale": "en",
+      "path": "assets/__PROJECT_MOBILE__/screenshots/en/mobile-home-concept.png",
       "prompt_file": null,
       "generated_at": null,
       "sha256": null,
@@ -54,7 +114,17 @@
     },
     {
       "image_type": "server-architecture",
-      "path": "assets/__PROJECT_SERVER__/architecture/server-architecture-concept.png",
+      "locale": "zh-CN",
+      "path": "assets/__PROJECT_SERVER__/architecture/zh-CN/server-architecture-concept.png",
+      "prompt_file": null,
+      "generated_at": null,
+      "sha256": null,
+      "generated_by": null
+    },
+    {
+      "image_type": "server-architecture",
+      "locale": "en",
+      "path": "assets/__PROJECT_SERVER__/architecture/en/server-architecture-concept.png",
       "prompt_file": null,
       "generated_at": null,
       "sha256": null,

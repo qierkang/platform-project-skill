@@ -5,8 +5,8 @@ set -euo pipefail
 #   register-asset.sh <project-path> <image-relative-path> [prompt-file-relative] [--generated-by image_gen]
 #
 # 示例:
-#   register-asset.sh /tmp/demo-platform assets/platform/architecture/demo-platform-overview.png
-#   register-asset.sh /tmp/demo-platform assets/demo-front/design/front-ui-design-draft.png assets/prompts/front.md
+#   register-asset.sh /tmp/demo-platform assets/platform/architecture/zh-CN/demo-platform-overview.png
+#   register-asset.sh /tmp/demo-platform assets/demo-front/design/en/front-ui-design-draft.png assets/prompts/front-en.md
 #
 # 作用:
 #   把指定图片登记到 <project>/assets/asset-manifest.json:

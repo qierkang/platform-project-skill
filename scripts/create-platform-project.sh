@@ -96,22 +96,7 @@ fi
 [[ -d "$TARGET_DIR/assets/omni-platform-mobile" ]] && mv "$TARGET_DIR/assets/omni-platform-mobile" "$TARGET_DIR/assets/$mobile_slug"
 [[ -d "$TARGET_DIR/assets/omni-platform-server" ]] && mv "$TARGET_DIR/assets/omni-platform-server" "$TARGET_DIR/assets/$server_slug"
 
-# 3) 重命名平台资产文件
-for pair in \
-  "assets/platform/architecture/omni-platform-overview.png:${PROJECT_SLUG}-overview.png" \
-  "assets/platform/architecture/omni-platform-overview-prompt.md:${PROJECT_SLUG}-overview-prompt.md" \
-  "assets/platform/design/omni-platform-design-baseline.png:${PROJECT_SLUG}-design-baseline.png"
-do
-  src_rel="${pair%%:*}"
-  dst_name="${pair##*:}"
-  src_path="$TARGET_DIR/$src_rel"
-  if [[ -f "$src_path" ]]; then
-    dst_dir="$(dirname "$src_path")"
-    mv "$src_path" "$dst_dir/$dst_name"
-  fi
-done
-
-# 4) 文本替换 (perl, 二进制和锁文件跳过)
+# 3) 文本替换 (perl, 二进制和锁文件跳过)
 #    顺序很关键: 长的先替换，避免 omni-platform 提前吃掉 omni-platform-front
 escape() { printf '%s' "$1" | sed 's/[\/&]/\\&/g; s/[$@]/\\&/g'; }
 
@@ -141,7 +126,7 @@ while IFS= read -r file; do
   " "$file"
 done < <(find "$TARGET_DIR" -type f)
 
-# 5) 更新 VERSION.md 元数据
+# 4) 更新 VERSION.md 元数据
 if [[ -f "$TARGET_DIR/VERSION.md" ]]; then
   cat > "$TARGET_DIR/VERSION.md" <<EOF
 # ${DISPLAY_NAME} (Derived from omni-platform)
@@ -155,7 +140,7 @@ if [[ -f "$TARGET_DIR/VERSION.md" ]]; then
 EOF
 fi
 
-# 6) 重置 graphify 占位报告
+# 5) 重置 graphify 占位报告
 if [[ -f "$TARGET_DIR/graphify-out/GRAPH_REPORT.md" ]]; then
   cat > "$TARGET_DIR/graphify-out/GRAPH_REPORT.md" <<EOF
 # Graph Report - ${PROJECT_SLUG}
@@ -164,27 +149,46 @@ if [[ -f "$TARGET_DIR/graphify-out/GRAPH_REPORT.md" ]]; then
 EOF
 fi
 
-# 7) 删除母版自带的 PNG（这些是占位图，必须由 image_gen 替换），保留目录骨架
+# 6) 删除母版自带的 PNG（这些是占位图，必须由 image_gen 替换），保留目录骨架
 if [[ -d "$TARGET_DIR/assets" ]]; then
   find "$TARGET_DIR/assets" -type f -name "*.png" -delete
 fi
 
-# 8) 生成 .asset-todo.json (待办清单)
+# 7) 创建双语资产目录
+for locale in zh-CN en; do
+  mkdir -p \
+    "$TARGET_DIR/assets/platform/architecture/$locale" \
+    "$TARGET_DIR/assets/platform/design/$locale" \
+    "$TARGET_DIR/assets/$front_slug/design/$locale" \
+    "$TARGET_DIR/assets/$front_slug/screenshots/$locale" \
+    "$TARGET_DIR/assets/$mobile_slug/design/$locale" \
+    "$TARGET_DIR/assets/$mobile_slug/screenshots/$locale" \
+    "$TARGET_DIR/assets/$server_slug/architecture/$locale"
+done
+
+# 8) 生成 .asset-todo.json (7 类图片 × 2 种语言)
 cat > "$TARGET_DIR/assets/.asset-todo.json" <<EOF
 {
   "schema_version": 1,
   "project_slug": "${PROJECT_SLUG}",
   "created_at": "$(date -u +%FT%TZ)",
   "todo": [
-    { "image_type": "platform-architecture",    "path": "assets/platform/architecture/${PROJECT_SLUG}-overview.png" },
-    { "image_type": "platform-design-baseline", "path": "assets/platform/design/${PROJECT_SLUG}-design-baseline.png" },
-    { "image_type": "front-ui-draft",           "path": "assets/${front_slug}/design/front-ui-design-draft.png" },
-    { "image_type": "front-dashboard-concept",  "path": "assets/${front_slug}/screenshots/front-dashboard-concept.png" },
-    { "image_type": "mobile-ui-draft",          "path": "assets/${mobile_slug}/design/mobile-ui-design-draft.png" },
-    { "image_type": "mobile-home-concept",      "path": "assets/${mobile_slug}/screenshots/mobile-home-concept.png" },
-    { "image_type": "server-architecture",      "path": "assets/${server_slug}/architecture/server-architecture-concept.png" }
+    { "image_type": "platform-architecture",     "locale": "zh-CN", "path": "assets/platform/architecture/zh-CN/${PROJECT_SLUG}-overview.png" },
+    { "image_type": "platform-architecture",     "locale": "en",    "path": "assets/platform/architecture/en/${PROJECT_SLUG}-overview.png" },
+    { "image_type": "platform-design-baseline",  "locale": "zh-CN", "path": "assets/platform/design/zh-CN/${PROJECT_SLUG}-design-baseline.png" },
+    { "image_type": "platform-design-baseline",  "locale": "en",    "path": "assets/platform/design/en/${PROJECT_SLUG}-design-baseline.png" },
+    { "image_type": "front-ui-draft",            "locale": "zh-CN", "path": "assets/${front_slug}/design/zh-CN/front-ui-design-draft.png" },
+    { "image_type": "front-ui-draft",            "locale": "en",    "path": "assets/${front_slug}/design/en/front-ui-design-draft.png" },
+    { "image_type": "front-dashboard-concept",   "locale": "zh-CN", "path": "assets/${front_slug}/screenshots/zh-CN/front-dashboard-concept.png" },
+    { "image_type": "front-dashboard-concept",   "locale": "en",    "path": "assets/${front_slug}/screenshots/en/front-dashboard-concept.png" },
+    { "image_type": "mobile-ui-draft",           "locale": "zh-CN", "path": "assets/${mobile_slug}/design/zh-CN/mobile-ui-design-draft.png" },
+    { "image_type": "mobile-ui-draft",           "locale": "en",    "path": "assets/${mobile_slug}/design/en/mobile-ui-design-draft.png" },
+    { "image_type": "mobile-home-concept",       "locale": "zh-CN", "path": "assets/${mobile_slug}/screenshots/zh-CN/mobile-home-concept.png" },
+    { "image_type": "mobile-home-concept",       "locale": "en",    "path": "assets/${mobile_slug}/screenshots/en/mobile-home-concept.png" },
+    { "image_type": "server-architecture",       "locale": "zh-CN", "path": "assets/${server_slug}/architecture/zh-CN/server-architecture-concept.png" },
+    { "image_type": "server-architecture",       "locale": "en",    "path": "assets/${server_slug}/architecture/en/server-architecture-concept.png" }
   ],
-  "note": "请用 image_gen 生成每张图，落盘后调用 scripts/register-asset.sh 登记到 asset-manifest.json"
+  "note": "请用 image_gen 生成 7 类 × 2 语言共 14 张图，落盘后调用 scripts/register-asset.sh 登记到 asset-manifest.json"
 }
 EOF
 
@@ -215,7 +219,7 @@ ASSET_TODO=$TARGET_DIR/assets/.asset-todo.json
 ASSET_MANIFEST=$TARGET_DIR/assets/asset-manifest.json
 
 WARN scaffold 完成 ≠ 初始化完成。还差 2 步:
-  1) 对 .asset-todo.json 列出的 5 张图运行 image_gen 生成；落盘后用 register-asset.sh 登记
+  1) 对 .asset-todo.json 列出的 14 张双语图运行 image_gen 生成；落盘后用 register-asset.sh 登记
   2) 跑 verify-assets.sh + check-project-baseline.sh + readme-gate.py + docker compose config -q
 
 NEXT_GENERATE=for each todo: image_gen → bash "$SKILL_ROOT/scripts/register-asset.sh" "$TARGET_DIR" <image-path> [prompt]

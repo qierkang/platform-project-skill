@@ -12,6 +12,8 @@
 
 <div align="center">
 
+[简体中文](./README.md) · [English](./docs/README_en.md)
+
 [![License](https://img.shields.io/badge/license-Internal-blue.svg)](#-许可证)
 [![Version](https://img.shields.io/badge/version-1.0.0--alpha-informational.svg)](#-版本说明)
 [![Status](https://img.shields.io/badge/status-初始化完成-success.svg)](#-项目状态)
@@ -25,12 +27,12 @@
 
 先看平台整体分层，再进入前端、移动端、服务端和 Docker 编排细节。
 
-![项目架构图](./assets/platform/architecture/omni-platform-overview.png)
+![项目架构图](./assets/platform/architecture/zh-CN/omni-platform-overview.png)
 
 - 图资产目录：`./assets/platform/architecture/`
-- 本次架构图提示词留档：`./assets/platform/architecture/omni-platform-overview-prompt.md`
+- 本次架构图提示词留档：`./assets/prompts/architecture-image-prompt-zh-CN.md`
 
-![平台设计基线图](./assets/platform/design/omni-platform-design-baseline.png)
+![平台设计基线图](./assets/platform/design/zh-CN/omni-platform-design-baseline.png)
 
 - 设计基线图目录：`./assets/platform/design/`
 
@@ -62,14 +64,14 @@
 
 ### 截图预览
 
-![项目架构图](./assets/platform/architecture/omni-platform-overview.png)
-![平台设计基线图](./assets/platform/design/omni-platform-design-baseline.png)
-![管理端 UI 设计稿](./assets/omni-platform-front/design/front-ui-design-draft.png)
-![移动端 UI 设计稿](./assets/omni-platform-mobile/design/mobile-ui-design-draft.png)
+![项目架构图](./assets/platform/architecture/zh-CN/omni-platform-overview.png)
+![平台设计基线图](./assets/platform/design/zh-CN/omni-platform-design-baseline.png)
+![管理端 UI 设计稿](./assets/omni-platform-front/design/zh-CN/front-ui-design-draft.png)
+![移动端 UI 设计稿](./assets/omni-platform-mobile/design/zh-CN/mobile-ui-design-draft.png)
 
-- 平台设计基线图已落到 `./assets/platform/design/omni-platform-design-baseline.png`
-- 管理端 UI 设计稿已落到 `./assets/omni-platform-front/design/front-ui-design-draft.png`
-- 移动端 UI 设计稿已落到 `./assets/omni-platform-mobile/design/mobile-ui-design-draft.png`
+- 平台设计基线图已落到 `./assets/platform/design/zh-CN/omni-platform-design-baseline.png`
+- 管理端 UI 设计稿已落到 `./assets/omni-platform-front/design/zh-CN/front-ui-design-draft.png`
+- 移动端 UI 设计稿已落到 `./assets/omni-platform-mobile/design/zh-CN/mobile-ui-design-draft.png`
 - 真实业务派生后，建议继续补业务首页图、核心流程图和关键页面状态图
 
 ## 🚦 项目状态

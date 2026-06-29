@@ -25,9 +25,9 @@
 
 先看整体平台分层，再理解当前移动端在多端体系中的位置。
 
-![移动端示意图](../assets/omni-platform-mobile/screenshots/mobile-home-concept.png)
+![移动端示意图](../assets/omni-platform-mobile/screenshots/zh-CN/mobile-home-concept.png)
 
-![移动端 UI 设计稿](../assets/omni-platform-mobile/design/mobile-ui-design-draft.png)
+![移动端 UI 设计稿](../assets/omni-platform-mobile/design/zh-CN/mobile-ui-design-draft.png)
 
 ## 📋 项目概述
 
@@ -56,12 +56,12 @@
 
 ### 截图预览
 
-![项目架构图](../assets/platform/architecture/omni-platform-overview.png)
-![移动端示意图](../assets/omni-platform-mobile/screenshots/mobile-home-concept.png)
-![移动端 UI 设计稿](../assets/omni-platform-mobile/design/mobile-ui-design-draft.png)
+![项目架构图](../assets/platform/architecture/zh-CN/omni-platform-overview.png)
+![移动端示意图](../assets/omni-platform-mobile/screenshots/zh-CN/mobile-home-concept.png)
+![移动端 UI 设计稿](../assets/omni-platform-mobile/design/zh-CN/mobile-ui-design-draft.png)
 
-- 当前示意图已落到 `../assets/omni-platform-mobile/screenshots/mobile-home-concept.png`
-- 当前 UI 设计稿已落到 `../assets/omni-platform-mobile/design/mobile-ui-design-draft.png`
+- 当前示意图已落到 `../assets/omni-platform-mobile/screenshots/zh-CN/mobile-home-concept.png`
+- 当前 UI 设计稿已落到 `../assets/omni-platform-mobile/design/zh-CN/mobile-ui-design-draft.png`
 
 ## 🚦 项目状态
 

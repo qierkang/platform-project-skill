@@ -16,7 +16,7 @@ initialization_done = scaffold_done ∧ asset_done ∧ validation_done
 - `README.md / AGENTS.md / CLAUDE.md / START-HERE.md / VERSION.md` 已替换为目标项目身份
 - `docker-compose.yml / .env.example / package.json` 命名替换完成
 - `assets/asset-manifest.json` 模板拷贝完成（generated_at 全为 null）
-- `assets/.asset-todo.json` 列出待生成清单
+- `assets/.asset-todo.json` 列出 14 项双语待生成清单（7 类图片 × `zh-CN` / `en`）
 
 ### asset_done
 - `assets/asset-manifest.json` 的 `required[*]` 每条都 `generated_at != null` 且 `sha256` 实测匹配

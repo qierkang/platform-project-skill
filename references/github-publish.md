@@ -23,7 +23,7 @@ README 内容规则见 [readme-rules.md](readme-rules.md)。
 - `CHANGELOG.md`（Keep a Changelog + SemVer）
 - `.github/workflows/ci.yml`（至少跑 `bash -n` + README gate）
 - `.github/ISSUE_TEMPLATE/`（bug + feature）
-- 可选多语言文档 `docs/README_en.md` / `docs/README_zh-tw.md`，根 README nav 交叉链接必须有效（无死链）
+- 默认根 `README.md` 使用简体中文；必须提供 `docs/README_en.md` 并在 nav 交叉链接。中文 README 引用 `zh-CN` 图片，英文 README 引用 `en` 图片；`docs/README_zh-tw.md` 可选。
 
 ## 3. Social preview image (品牌卡片)
 

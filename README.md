@@ -40,7 +40,7 @@
 
 ---
 
-![Platform Project Skill 工作流总览](./assets/architecture/platform-project-skill-workflow.png)
+![Platform Project Skill 工作流总览](./assets/architecture/zh-CN/platform-project-skill-workflow.png)
 
 ---
 
@@ -89,6 +89,8 @@ scripts/upgrade-existing-project.sh /path/to/existing-project
 `platform-project-skill` 是一套专为 AI 编程工作流设计的项目脚手架技能包——新项目 30 秒建好完整骨架（目录 · Docker · README · AGENTS.md · CLAUDE.md · graphify 基线），老项目 60 秒补齐 AI 接手层，业务代码零修改。面向使用 Claude Code / Codex / Cursor 的开发者和团队，消除每次搭项目时的重复劳动，让 AI Agent 第一天就能高效接手任何项目。
 
 > **English summary**: `platform-project-skill` is a `SKILL.md`-format AI agent skill for Claude Code, Codex, and Cursor. It scaffolds new platform projects from the `omni-platform` template in 30 seconds (fully offline), and non-invasively adds an AI handoff layer (`AGENTS.md`, `CLAUDE.md`, `START-HERE.md`) to any existing project — without touching business code. Any agent supporting the `SKILL.md` format can invoke it directly.
+>
+> If this saves you time, a ⭐ helps others find it.
 
 ## 核心特色
 
@@ -176,9 +178,9 @@ my-platform/
 
 </details>
 
-![新项目初始化流程](./assets/architecture/new-project-flow.png)
+![新项目初始化流程](./assets/architecture/zh-CN/new-project-flow.png)
 
-![老项目 AI 能力升级流程](./assets/architecture/existing-project-upgrade-flow.png)
+![已有项目 AI 升级流程](./assets/architecture/zh-CN/existing-project-upgrade-flow.png)
 
 ### 升级老项目 AI 接手层
 
@@ -242,7 +244,7 @@ scripts/check-project-baseline.sh --existing /path/to/project
 | 规则文档 | `references/*.md` | 新项目、老项目、README、assets、graphify 详细规则，按需加载 |
 | 自动化脚本 | Bash | 扫描、创建、升级、校验、同步，每个脚本均可独立调用 |
 | 母版资产 | `assets/templates/omni-platform/` | 官方平台母版快照，新项目的唯一来源 |
-| 架构图 | `assets/architecture/*.png` | skill 自身的工作流图和资源地图 |
+| 架构图 | `assets/architecture/{zh-CN,en}/*.png` | skill 自身的中英文工作流图和资源地图 |
 | 视觉生成 | `image_gen` | 最终架构图、设计图、流程图的生成工具 |
 | README 校验 | `~/.claude/scripts/readme-gate.py` | README 内容完整性与结构合规检查 |
 
@@ -280,7 +282,7 @@ README · AGENTS · CLAUDE · assets · docs · graphify
 - 重复性动作封装进 `scripts/`，每个脚本通过 `bash -n` 语法校验后才能合入
 - `assets/templates/omni-platform/` 是新项目的唯一母版来源，禁止从 AI 记忆重建
 
-![skill 资源地图](./assets/architecture/skill-resource-map.png)
+![platform-project-skill 资源地图](./assets/architecture/zh-CN/skill-resource-map.png)
 
 ---
 
@@ -294,7 +296,7 @@ platform-project-skill/
 ├── AGENTS.md                         # Agent 接手说明
 ├── CLAUDE.md                         # Claude Code 专属配置
 ├── assets/
-│   ├── architecture/                 # skill 自身架构图（.png）
+│   ├── architecture/{zh-CN,en}/      # skill 自身中英文架构图（.png）
 │   ├── prompts/                      # 图片生成 prompt 模板
 │   └── templates/
 │       └── omni-platform/            # 官方平台母版快照
@@ -362,7 +364,7 @@ scripts/sync-omni-template.sh
 ```bash
 # 1. 用 image_gen 生成图片
 # 2. 注册到 manifest
-scripts/register-asset.sh . assets/architecture/new-diagram.png
+scripts/register-asset.sh . assets/architecture/zh-CN/new-diagram.png
 
 # 3. 校验无孤儿图
 scripts/verify-assets.sh .
@@ -392,7 +394,7 @@ scripts/check-project-baseline.sh .
 - README 必须通过 gate（无缺失节、无占位符、以 `# ` 开头）
 - 脚本必须通过 `bash -n` 语法检查
 - skill 目录内不得保留 `.DS_Store`、`node_modules`、`dist`
-- README 展示图不得放进 fenced code block，必须用 `![说明](路径)` 直接引用
+- README 展示图不得放进 fenced code block，必须用 Markdown 图片语法直接引用
 
 ---
 

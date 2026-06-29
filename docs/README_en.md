@@ -19,6 +19,8 @@
 - **New project**: Copies from the bundled `omni-platform` template → generates a complete scaffold (`README`, `AGENTS.md`, `CLAUDE.md`, `docker-compose.yml`, `docs/`, frontend + backend stubs) in under 30 seconds. Fully offline, no network required.
 - **Existing project**: Non-invasively adds an AI handoff layer (`AGENTS.md`, `CLAUDE.md`, `START-HERE.md`) to any codebase, without touching business code, directory structure, or tech stack.
 
+![Platform Project Skill workflow overview](../assets/architecture/en/platform-project-skill-workflow.png)
+
 ### Why SKILL.md?
 
 The `SKILL.md` format lets AI agents discover and invoke this skill directly from natural language. You don't run a CLI command — you tell your AI agent what you need:
@@ -120,6 +122,10 @@ One skill covers both workflows. The agent auto-detects the route:
 | "only fix README / add assets" | `partial` | Per-rule file in `references/` |
 | Not sure which route | Scan first | `scripts/inspect-project.sh` |
 
+![New project scaffolding flow](../assets/architecture/en/new-project-flow.png)
+
+![Existing project AI upgrade flow](../assets/architecture/en/existing-project-upgrade-flow.png)
+
 ### Non-Invasive Principle
 
 The existing-project upgrade never modifies files that already exist. It only adds the AI handoff layer on top of whatever structure is already there.
@@ -145,6 +151,8 @@ The agent cannot use the word "done" until `STATE=initialization_done`.
 ---
 
 ## Command Reference
+
+![Platform Project Skill resource map](../assets/architecture/en/skill-resource-map.png)
 
 | Command | Description |
 |---|---|

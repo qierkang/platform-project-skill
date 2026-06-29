@@ -17,8 +17,11 @@ Follow the shared README style and gate:
   - `xyqierkang@gmail.com`
   - `https://github.com/qierkang`
 - Use direct image syntax for display images:
-  - Correct: `![架构图](./assets/platform/architecture/example.png)`
+  - Correct: `![架构图](./assets/platform/architecture/zh-CN/example.png)`
   - Incorrect for display: fenced `md` code block wrapping the image syntax
+- Default to a Simplified Chinese root `README.md`.
+- Add `docs/README_en.md` and link it from the root language navigation.
+- Reference `zh-CN` images from Chinese README files and `en` images from the English README.
 
 ## Root README Image Paths
 
@@ -49,8 +52,8 @@ upgrades should add the missing ones):
 - `CHANGELOG.md` — follow Keep a Changelog + Semantic Versioning.
 - `.github/workflows/ci.yml` — at minimum run `bash -n` on scripts and the README gate.
 - `.github/ISSUE_TEMPLATE/` — bug and feature templates lower the contribution barrier.
-- Optional multi-language docs under `docs/` (`README_en.md`, `README_zh-tw.md`) with working
-  cross-links from the root README nav.
+- Required English documentation at `docs/README_en.md`; optional Traditional Chinese documentation
+  at `docs/README_zh-tw.md`. Keep working cross-links from the root README navigation.
 
 Before publishing, run a release-safety scan: no hardcoded secrets, no real `.env`, no noise
 files (`.DS_Store` / `node_modules` / `dist`), and no internal business names or absolute user
@@ -65,4 +68,3 @@ Run:
 ```
 
 If the project has subproject README files, run the same gate for each one.
-

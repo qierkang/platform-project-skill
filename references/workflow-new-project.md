@@ -19,23 +19,22 @@ Create a new `*-platform` project that closely follows `assets/templates/omni-pl
 
 1. 创建：`scripts/create-platform-project.sh <slug> <parent> "<Display Name>" "<中文名>"`
 2. 校验脚本输出含 `STATE=scaffold_done`
-3. 母版自带的 5 张占位图已被脚本删除；`assets/asset-manifest.json` 与 `assets/.asset-todo.json` 已就位
+3. 母版占位图已被脚本删除；`assets/asset-manifest.json` 与包含 14 项（7 类 × 2 语言）的 `assets/.asset-todo.json` 已就位
 
 ### B. asset（**禁止跳过**）
 
-4. 读 `assets/.asset-todo.json`，按 `image_type` 逐张调用 `image_gen`：
-   - `platform-architecture` → `assets/platform/architecture/<slug>-overview.png`
-   - `platform-design-baseline` → `assets/platform/design/<slug>-design-baseline.png`
-   - `front-ui-draft` → `assets/<base>-front/design/front-ui-design-draft.png`
-   - `mobile-ui-draft` → `assets/<base>-mobile/design/mobile-ui-design-draft.png`
-   - `server-architecture` → `assets/<base>-server/architecture/server-architecture-concept.png`
+4. 读 `assets/.asset-todo.json`，按 `image_type + locale` 逐张调用 `image_gen`：
+   - 7 类图片全部生成 `zh-CN` 与 `en` 两套，共 14 张
+   - 路径统一为 `assets/<scope>/<category>/<locale>/<filename>.png`
+   - `zh-CN` 只使用简体中文标签（代码标识符除外）
+   - `en` 只使用英文标签
 5. 每张图落盘后立即：`scripts/register-asset.sh <project-path> <image-relative-path> [prompt-file]`
 6. 跑 `scripts/verify-assets.sh <project-path>`，必须看到 `STATE=asset_done`
 
 ### C. README 引用同步
 
-7. 更新根 `README.md` 和 `assets/README.md` 引用，全部图都要被至少一个 README 引用（否则 verify-assets 报"孤儿图"）
-8. 子项目 README 引用对应的 front/mobile/server 图
+7. 更新默认中文根 `README.md`、`assets/README.md` 与子项目 README，引用 `zh-CN` 图片
+8. 更新 `docs/README_en.md`，引用全部对应的 `en` 图片
 
 ### D. validation
 

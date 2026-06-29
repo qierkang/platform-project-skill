@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "project_slug": "platform-project-skill",
+  "generated_at": "2026-06-29T14:47:52+00:00",
+  "note": "README 架构图按 zh-CN 与 en 双语分区。每张图必须由 image_gen 生成或从本项目已发布 Git 历史恢复，并通过 register-asset.sh 登记。",
+  "required": [
+    {
+      "image_type": "workflow-overview",
+      "locale": "zh-CN",
+      "path": "assets/architecture/zh-CN/platform-project-skill-workflow.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-zh-CN.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "27472f6dc1267bacbdcd87a640662a92adf79d6d4c63dcb4650d546b78eb33e1",
+      "generated_by": "image_gen"
+    },
+    {
+      "image_type": "new-project-flow",
+      "locale": "zh-CN",
+      "path": "assets/architecture/zh-CN/new-project-flow.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-zh-CN.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "fa6389bcd9bf45bc5a2e9731a4c66027cfab9ed07e35b9cea45131d503a10da4",
+      "generated_by": "image_gen"
+    },
+    {
+      "image_type": "existing-project-upgrade-flow",
+      "locale": "zh-CN",
+      "path": "assets/architecture/zh-CN/existing-project-upgrade-flow.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-zh-CN.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "d4b5c3c0caef22dc49d075a0e0bde826bdb27094db76ca72ee85e01a34006dd2",
+      "generated_by": "image_gen"
+    },
+    {
+      "image_type": "resource-map",
+      "locale": "zh-CN",
+      "path": "assets/architecture/zh-CN/skill-resource-map.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-zh-CN.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "ad2ed4829c394477f06abf16b1b70e87833d818b104e308ef71dddb69b0ae4ee",
+      "generated_by": "image_gen"
+    },
+    {
+      "image_type": "workflow-overview",
+      "locale": "en",
+      "path": "assets/architecture/en/platform-project-skill-workflow.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-en.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "cda9bf5fdb8b3c72fb608271895bd077ba3ca4d040bbe258e147f494ece38a68",
+      "generated_by": "image_gen"
+    },
+    {
+      "image_type": "new-project-flow",
+      "locale": "en",
+      "path": "assets/architecture/en/new-project-flow.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-en.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "8f3a9d8e01efa9eccf57ac382063bcb56289dca3139f06935d9afadc476f7b53",
+      "generated_by": "image_gen"
+    },
+    {
+      "image_type": "existing-project-upgrade-flow",
+      "locale": "en",
+      "path": "assets/architecture/en/existing-project-upgrade-flow.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-en.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "c383ce54d0c7f0c3e644c061075685ab580931ad2fda97699986acaf4acf01c0",
+      "generated_by": "image_gen"
+    },
+    {
+      "image_type": "resource-map",
+      "locale": "en",
+      "path": "assets/architecture/en/skill-resource-map.png",
+      "prompt_file": "assets/prompts/architecture-image-prompt-en.md",
+      "generated_at": "2026-06-29T14:47:52+00:00",
+      "sha256": "0f5c487709cc427632c6b6683d67b232684e39d11a3b037b0f26feef4d1755fc",
+      "generated_by": "image_gen"
+    }
+  ],
+  "extra": []
+}

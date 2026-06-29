@@ -9,7 +9,7 @@ set -euo pipefail
 #   B. manifest.required 全部 generated_at != null
 #   C. manifest 中每条记录的图片文件存在 且 sha256 匹配文件实际 hash
 #   D. manifest 中每条记录的 sha256 不在 governance/template-image-hashes.json 中 (模板占位图复用)
-#   E. README/子项目 README 中所有本地图片引用 都能在 manifest (required + extra) 中找到 (杜绝孤儿图)
+#   E. README*.md 中所有本地图片引用 都能在 manifest (required + extra) 中找到 (杜绝孤儿图)
 #   F. manifest 中每张登记的图都至少被一个 README 引用 (杜绝孤立产物)
 #
 # 退出码:
@@ -99,10 +99,10 @@ for entry in extra:
 
 # E + F: README ↔ manifest 双向校验
 SKIP_DIRS = {"assets", "references", "examples", "governance",
-             "node_modules", "dist", "graphify-out", ".git"}
+             "node_modules", "dist", "tmp", "graphify-out", ".git"}
 
 readme_image_refs = []  # (readme_path, image_rel_to_project)
-for readme in project.rglob("README.md"):
+for readme in project.rglob("README*.md"):
     if any(p in SKIP_DIRS for p in readme.relative_to(project).parts[:-1]):
         continue
     text = readme.read_text(encoding="utf-8", errors="ignore")
