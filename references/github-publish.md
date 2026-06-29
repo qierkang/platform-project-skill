@@ -29,6 +29,7 @@ README 内容规则见 [readme-rules.md](readme-rules.md)。
 
 - 标准尺寸 `1280×640`（2:1）。**不要为消除空白而裁掉比例** —— GitHub 卡片按 2:1 显示。
 - 产出两份：`assets/social-preview.svg`（矢量，嵌 README hero）+ `assets/social-preview.png`（GitHub Settings 上传只收 PNG/JPG，不收 SVG）。
+- `assets/social-preview.png` 必须小于 1 MiB (`1048576` bytes)。超过该限制时 GitHub Settings 可能上传失败，必须压缩或重新生成后再发布。
 - 设计：固定深色品牌卡片，全 hardcoded hex（不随明暗模式反转）；坐标精确锁死，文字用绝对 x/y 定位，避免"被容器缩放后错位"。
 - 内容充实优先于留白填充：右侧空白用"一条命令 → 产出结构"的终端输出叙事填充（命令 + ✓ 生成的关键文件/目录），比堆装饰更有说服力。
 - 渲染验证（本地无 rsvg/cairosvg 时用 Chrome headless）：

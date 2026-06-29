@@ -4,7 +4,7 @@ set -euo pipefail
 # 非侵入式老项目 AI 接手层升级
 #
 # 用法:
-#   upgrade-existing-project.sh <project-path> [--with-assets] [--with-platform-docs] [--dry-run]
+#   upgrade-existing-project.sh <project-path> [--with-assets] [--with-platform-docs] [--refresh-report] [--dry-run]
 #
 # 默认行为 (保守模式):
 #   - 只补 AGENTS.md / CLAUDE.md / START-HERE.md / docs/ai-upgrade/ 升级报告
@@ -17,17 +17,20 @@ set -euo pipefail
 # 选项:
 #   --with-assets         追加 assets/platform/{architecture,design,flow}
 #   --with-platform-docs  追加 docs/{requirements,design,...}
+#   --refresh-report      重建已有升级报告（默认保留已有报告）
 #   --dry-run             打印计划，不真正写文件
 
 PROJECT_PATH=""
 WITH_ASSETS=0
 WITH_PLATFORM_DOCS=0
 DRY_RUN=0
+REFRESH_REPORT=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --with-assets) WITH_ASSETS=1; shift ;;
     --with-platform-docs) WITH_PLATFORM_DOCS=1; shift ;;
+    --refresh-report) REFRESH_REPORT=1; shift ;;
     --dry-run) DRY_RUN=1; shift ;;
     -h|--help)
       sed -n '1,30p' "$0"
@@ -46,7 +49,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$PROJECT_PATH" ]]; then
-  echo "usage: upgrade-existing-project.sh <project-path> [--with-assets] [--with-platform-docs] [--dry-run]" >&2
+  echo "usage: upgrade-existing-project.sh <project-path> [--with-assets] [--with-platform-docs] [--refresh-report] [--dry-run]" >&2
   exit 2
 fi
 
@@ -61,6 +64,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # ---------- inspect ----------
 inspect_out="$(bash "$SCRIPT_DIR/inspect-project.sh" "$PROJECT_PATH")"
 eval "$inspect_out"   # 注入 HAS_*、PROJECT_TYPE 等
+HAS_START_HERE=0
+[[ -f "$PROJECT_PATH/START-HERE.md" ]] && HAS_START_HERE=1
 
 # ---------- 语言/类型识别 ----------
 PROJECT_LANG="other"
@@ -103,8 +108,16 @@ if [[ ! -f "$PROJECT_PATH/START-HERE.md" ]]; then
   plan_add "ADD  START-HERE.md"
 fi
 
+REPORT_REL="docs/ai-upgrade/report-老项目AI能力升级.md"
+REPORT="$PROJECT_PATH/$REPORT_REL"
 if ! is_ignored "docs/ai-upgrade"; then
-  plan_add "ADD  docs/ai-upgrade/report-老项目AI能力升级.md"
+  if [[ -f "$REPORT" && "$REFRESH_REPORT" -eq 0 ]]; then
+    plan_add "KEEP $REPORT_REL (use --refresh-report to rebuild)"
+  elif [[ -f "$REPORT" ]]; then
+    plan_add "UPDATE $REPORT_REL"
+  else
+    plan_add "ADD  $REPORT_REL"
+  fi
 else
   plan_add "SKIP docs/ai-upgrade (gitignored)"
 fi
@@ -135,6 +148,7 @@ echo "PROJECT_TYPE=${PROJECT_TYPE:-unknown}"
 echo "PROJECT_LANG=$PROJECT_LANG"
 echo "WITH_ASSETS=$WITH_ASSETS"
 echo "WITH_PLATFORM_DOCS=$WITH_PLATFORM_DOCS"
+echo "REFRESH_REPORT=$REFRESH_REPORT"
 for item in "${PLAN[@]}"; do
   echo "  - $item"
 done
@@ -275,25 +289,35 @@ fi
 
 if ! is_ignored "docs/ai-upgrade"; then
   mkdir -p "$PROJECT_PATH/docs/ai-upgrade"
-  REPORT="$PROJECT_PATH/docs/ai-upgrade/report-老项目AI能力升级.md"
-  if [[ ! -f "$REPORT" ]]; then
+  if [[ ! -f "$REPORT" || "$REFRESH_REPORT" -eq 1 ]]; then
     {
       cat <<EOF
 # 老项目 AI 能力升级报告
 
 ## Project
 
-- Project path: \`$PROJECT_PATH\`
+- Project name: \`$(basename "$PROJECT_PATH")\`
+- Project path: \`${PROJECT_PATH/#$HOME/~}\`
 - Project lang: \`$PROJECT_LANG\`
 - Project type: \`${PROJECT_TYPE:-unknown}\`
 - Upgrade date: \`$(date +%F)\`
 
-## Added Files
+## Scanned Scope
 
-- AGENTS.md (when missing)
-- CLAUDE.md (only when no .claude/CLAUDE.md exists)
-- START-HERE.md (when missing)
-- docs/ai-upgrade/ (this report)
+- README: \`${HAS_README:-0}\`
+- AGENTS: \`${HAS_AGENTS:-0}\`
+- CLAUDE: \`${HAS_CLAUDE:-0}\`
+- assets: \`${HAS_ASSETS:-0}\`
+- docs: \`${HAS_DOCS:-0}\`
+- graphify report: \`${HAS_GRAPHIFY:-0}\`
+- Docker entry: \`${HAS_DOCKER:-0}\`
+
+## Upgrade Actions
+
+- AGENTS.md: $([[ "${HAS_AGENTS:-0}" -eq 1 ]] && echo 'preserved (already existed)' || echo 'added')
+- CLAUDE.md: $([[ "${HAS_CLAUDE:-0}" -eq 1 ]] && echo 'preserved (already existed)' || echo 'added')
+- START-HERE.md: $([[ "$HAS_START_HERE" -eq 1 ]] && echo 'preserved (already existed)' || echo 'added')
+- $REPORT_REL: added or refreshed
 EOF
       [[ "$WITH_ASSETS" -eq 1 ]] && echo "- assets/platform/{architecture,design,flow}/"
       [[ "$WITH_PLATFORM_DOCS" -eq 1 ]] && echo "- docs/{requirements,design,architecture,testing,deployment,api}/"

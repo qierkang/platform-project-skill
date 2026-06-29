@@ -13,6 +13,7 @@ set -euo pipefail
 #     - 若该路径在 required 列表 → 更新对应 entry
 #     - 否则 → 追加到 extra
 #   同时计算 sha256，自动填 generated_at（当前时间 ISO8601）。
+#   `assets/social-preview.png` 必须小于 1 MiB，避免 GitHub Settings 上传失败。
 #
 # 退出码:
 #   0 成功；2 用法错误；1 图片不存在或 manifest 缺失
@@ -47,6 +48,14 @@ MANIFEST="$PROJECT_PATH/assets/asset-manifest.json"
 [[ -f "$IMG_ABS" ]]    || { echo "error: image not found: $IMG_ABS" >&2; exit 1; }
 [[ -f "$MANIFEST" ]]   || { echo "error: manifest not found: $MANIFEST" >&2; exit 1; }
 
+if [[ "$IMAGE_REL" == "assets/social-preview.png" ]]; then
+  size_bytes="$(wc -c < "$IMG_ABS" | tr -d '[:space:]')"
+  if [[ "$size_bytes" -ge 1048576 ]]; then
+    echo "error: assets/social-preview.png is too large for GitHub upload: ${size_bytes} bytes (must be < 1048576)" >&2
+    exit 1
+  fi
+fi
+
 python3 - "$MANIFEST" "$IMAGE_REL" "${PROMPT_REL:-}" "$GENERATED_BY" "$IMG_ABS" <<'PY'
 import hashlib, json, sys
 from datetime import datetime, timezone
@@ -68,6 +77,15 @@ for entry in m.get("required", []):
         hit = True
         break
 if not hit:
+    for entry in m.setdefault("extra", []):
+        if entry.get("path") == image_rel:
+            entry["sha256"] = sha
+            entry["generated_at"] = now
+            entry["generated_by"] = generated_by
+            entry["prompt_file"] = prompt_rel or None
+            hit = True
+            break
+if not hit:
     m.setdefault("extra", []).append({
         "image_type": "extra",
         "path": image_rel,
@@ -79,5 +97,5 @@ if not hit:
 if m.get("generated_at") is None:
     m["generated_at"] = now
 Path(manifest_path).write_text(json.dumps(m, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"REGISTERED path={image_rel} sha={sha[:12]} bucket={'required' if hit else 'extra'}")
+print(f"REGISTERED path={image_rel} sha={sha[:12]}")
 PY

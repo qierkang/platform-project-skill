@@ -36,9 +36,10 @@ Keep both versions equivalent in image type, information hierarchy, dimensions, 
 
 1. Generate final images with `image_gen`, once per required image type and locale.
 2. **每张图落盘后立即** 调用 `scripts/register-asset.sh <project> <image-rel-path> [prompt]` 写入 `assets/asset-manifest.json`。
-3. Do not use Mermaid, SVG, HTML, screenshots, Graphviz, or local image scripts as substitutes for final visual images unless the user explicitly asks for editable diagrams or code-generated diagrams.
-4. 派生项目的图片 sha256 不允许与 `governance/template-image-hashes.json` 中任一条目相同（即"占位图复用"）—— 一旦命中，`verify-assets.sh` 直接 FAIL。
-5. 每张登记的图必须被至少一个 README 引用，否则视为"孤儿图"（warn）；未在 manifest 登记却被 README 引用，视为 FAIL。
+3. GitHub social preview PNG files are size-gated: `assets/social-preview.png` MUST be smaller than 1 MiB (`1048576` bytes). If the generated file is larger, compress or regenerate it before registration, README handoff, commit, or GitHub upload.
+4. Do not use Mermaid, SVG, HTML, screenshots, Graphviz, or local image scripts as substitutes for final visual images unless the user explicitly asks for editable diagrams or code-generated diagrams.
+5. 派生项目的图片 sha256 不允许与 `governance/template-image-hashes.json` 中任一条目相同（即"占位图复用"）—— 一旦命中，`verify-assets.sh` 直接 FAIL。
+6. 每张登记的图必须被至少一个 README 引用，否则视为"孤儿图"（warn）；未在 manifest 登记却被 README 引用，视为 FAIL。
 
 ## Prompt Assets
 

@@ -11,6 +11,7 @@ set -euo pipefail
 #   D. manifest 中每条记录的 sha256 不在 governance/template-image-hashes.json 中 (模板占位图复用)
 #   E. README*.md 中所有本地图片引用 都能在 manifest (required + extra) 中找到 (杜绝孤儿图)
 #   F. manifest 中每张登记的图都至少被一个 README 引用 (杜绝孤立产物)
+#   G. assets/social-preview.png 小于 1 MiB，避免 GitHub Settings 上传失败
 #
 # 退出码:
 #   0 → STATE=asset_done
@@ -38,6 +39,7 @@ from pathlib import Path
 
 project = Path(sys.argv[1]).resolve()
 hash_registry_path = Path(sys.argv[2])
+SOCIAL_PREVIEW_MAX_BYTES = 1024 * 1024
 
 manifest_path = project / "assets" / "asset-manifest.json"
 fails = []
@@ -81,6 +83,9 @@ for entry in required:
     if real_sha in template_hashes:
         fails.append(f"D. 占位图复用 (与母版 hash 相同): {rel} sha={real_sha[:12]}")
         continue
+    if rel == "assets/social-preview.png" and image_abs.stat().st_size >= SOCIAL_PREVIEW_MAX_BYTES:
+        fails.append(f"G. social-preview.png 超过 1 MiB: {rel} size={image_abs.stat().st_size} max={SOCIAL_PREVIEW_MAX_BYTES - 1}")
+        continue
     oks.append(f"B+C+D ok required: {rel}")
 
 # extra 也跑 C+D
@@ -96,6 +101,8 @@ for entry in extra:
         warns.append(f"extra sha256 不匹配 {rel}: manifest={sha[:12]} actual={real_sha[:12]}")
     if real_sha in template_hashes:
         fails.append(f"D. extra 占位图复用: {rel} sha={real_sha[:12]}")
+    if rel == "assets/social-preview.png" and image_abs.stat().st_size >= SOCIAL_PREVIEW_MAX_BYTES:
+        fails.append(f"G. social-preview.png 超过 1 MiB: {rel} size={image_abs.stat().st_size} max={SOCIAL_PREVIEW_MAX_BYTES - 1}")
 
 # E + F: README ↔ manifest 双向校验
 SKIP_DIRS = {"assets", "references", "examples", "governance",
