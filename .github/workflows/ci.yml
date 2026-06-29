@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  validate:
+    name: Validate skill
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Script syntax check
+        run: |
+          echo "==> Checking Bash script syntax..."
+          failed=0
+          for f in scripts/*.sh; do
+            if bash -n "$f"; then
+              echo "  ok: $f"
+            else
+              echo "  FAIL: $f"
+              failed=1
+            fi
+          done
+          exit $failed
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: README gate
+        run: |
+          echo "==> Running README gate..."
+          python3 - --readme README.md << 'GATE_EOF'
+          import argparse, json, re
+          from pathlib import Path
+
+          SECTION_GROUPS = [
+              ("项目概述", ["项目概述"]),
+              ("核心特色", ["核心特色"]),
+              ("项目状态", ["项目状态"]),
+              ("功能模块", ["功能模块"]),
+              ("技术栈", ["技术栈"]),
+              ("系统架构", ["系统架构"]),
+              ("目录结构", ["目录结构"]),
+              ("快速开始", ["快速开始"]),
+              ("开发指南", ["开发指南"]),
+              ("开发与验证", ["开发与验证", "测试与构建"]),
+              ("版本说明", ["版本说明", "Roadmap", "路线图"]),
+              ("许可证", ["许可证", "License"]),
+          ]
+
+          HEADING_RE = re.compile(r"^(#{1,6})\s+(.*\S)\s*$")
+          PLACEHOLDER_TOKENS = ("{{", "}}", "TODO", "待补充")
+
+          def normalize(text):
+              collapsed = re.sub(r"\s+", "", text).lower()
+              return re.sub(r"[^0-9a-z一-鿿]+", "", collapsed)
+
+          parser = argparse.ArgumentParser()
+          parser.add_argument("--readme", required=True)
+          args = parser.parse_args()
+
+          content = Path(args.readme).read_text(encoding="utf-8")
+          headings = [m.group(2).strip() for line in content.splitlines()
+                      if (m := HEADING_RE.match(line.strip()))]
+
+          normalized = [normalize(h) for h in headings]
+          missing = [name for name, aliases in SECTION_GROUPS
+                     if not any(any(normalize(a) in h for h in normalized) for a in aliases)]
+          placeholders = [t for t in PLACEHOLDER_TOKENS if t in content]
+
+          result = {
+              "pass": not missing and not placeholders and content.lstrip().startswith("# ")
+                      and len(content.encode()) >= 2500 and len(headings) >= 10,
+              "missing_sections": missing,
+              "placeholder_hits": placeholders,
+              "heading_count": len(headings),
+              "bytes": len(content.encode()),
+          }
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          if not result["pass"]:
+              raise SystemExit(2)
+          GATE_EOF
+
+      - name: Verify asset manifest exists
+        run: |
+          if [ -f assets/asset-manifest.json ]; then
+            echo "  ok: asset-manifest.json exists"
+          else
+            echo "  WARN: assets/asset-manifest.json not found (expected for new skill)"
+          fi
