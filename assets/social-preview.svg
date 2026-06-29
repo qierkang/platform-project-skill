@@ -15,24 +15,29 @@
   <text x="88" y="304" font-size="25" fill="#aab4cc">新项目一条命令建好骨架，老项目一条命令补齐 AI 接手层</text>
 
   <!-- terminal -->
-  <rect x="88" y="352" width="772" height="108" rx="14" fill="#161d33" stroke="#2a3350" stroke-width="1"/>
-  <circle cx="120" cy="382" r="6" fill="#ff5f56"/>
-  <circle cx="141" cy="382" r="6" fill="#ffbd2e"/>
-  <circle cx="162" cy="382" r="6" fill="#27c93f"/>
-  <text x="116" y="430" font-family="ui-monospace, Menlo, monospace" font-size="25" fill="#c8d1e8"><tspan fill="#d97757">$ </tspan>create-platform-project.sh <tspan fill="#7fd4a0">my-platform</tspan></text>
+  <rect x="88" y="330" width="1104" height="214" rx="14" fill="#161d33" stroke="#2a3350" stroke-width="1"/>
+  <circle cx="120" cy="360" r="6" fill="#ff5f56"/>
+  <circle cx="141" cy="360" r="6" fill="#ffbd2e"/>
+  <circle cx="162" cy="360" r="6" fill="#27c93f"/>
+  <g font-family="ui-monospace, Menlo, monospace">
+    <text x="116" y="402" font-size="24" fill="#c8d1e8"><tspan fill="#d97757">$ </tspan>create-platform-project.sh <tspan fill="#7fd4a0">my-platform</tspan></text>
+    <text x="116" y="446" font-size="18" fill="#9aa4bd"><tspan fill="#7fd4a0">✓</tspan> scaffolded <tspan fill="#c8d1e8">my-platform/</tspan> in ~30s — zero config, fully offline</text>
+    <text x="116" y="480" font-size="18" fill="#c8d1e8">README · AGENTS.md · CLAUDE.md · START-HERE.md · docker-compose.yml · docs/</text>
+    <text x="116" y="514" font-size="18" fill="#c8d1e8">front/ · server/ · mobile/ · graphify-out/  <tspan fill="#d97757">→</tspan>  <tspan fill="#aab4cc">ready for AI handoff on day one</tspan></text>
+  </g>
 
   <!-- pills -->
   <g font-size="19" fill="#aab4cc" text-anchor="middle">
-    <rect x="88"  y="496" width="158" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
-    <text x="167" y="522">Claude Code</text>
-    <rect x="260" y="496" width="92"  height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
-    <text x="306" y="522">Codex</text>
-    <rect x="366" y="496" width="104" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
-    <text x="418" y="522">Cursor</text>
-    <rect x="484" y="496" width="116" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
-    <text x="542" y="522">Offline</text>
-    <rect x="614" y="496" width="74"  height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
-    <text x="651" y="522">MIT</text>
+    <rect x="88"  y="568" width="158" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="167" y="594">Claude Code</text>
+    <rect x="260" y="568" width="92"  height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="306" y="594">Codex</text>
+    <rect x="366" y="568" width="104" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="418" y="594">Cursor</text>
+    <rect x="484" y="568" width="116" height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="542" y="594">Offline</text>
+    <rect x="614" y="568" width="74"  height="40" rx="20" fill="none" stroke="#2a3350" stroke-width="1"/>
+    <text x="651" y="594">MIT</text>
   </g>
 
   <!-- scaffold tags (top row, right after the badge) -->

@@ -24,6 +24,7 @@
 | [non-invasive-upgrade.md](non-invasive-upgrade.md) | 任何修改老项目时必读 |
 | [platform-rules.md](platform-rules.md) | 设计新项目目录结构、命名、根文件清单 |
 | [readme-rules.md](readme-rules.md) | 撰写或校验 README |
+| [github-publish.md](github-publish.md) | 把 skill / 项目发布到 GitHub 公开仓库（安全扫描、社区文件、social preview、缓存绕过、Topics/Homepage、隔离发布） |
 | [assets-rules.md](assets-rules.md) | 设计 assets/ 布局或生成图片 |
 | [graphify-rules.md](graphify-rules.md) | 决定是否生成 / 刷新 graphify |
 | [name-replacement-rules.md](name-replacement-rules.md) | 派生新项目时做名称替换 |
