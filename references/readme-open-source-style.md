@@ -118,6 +118,7 @@ After the top structure, keep these sections in this order unless the project ty
 19. `## Star History · Star 历史`
     - include Star callout.
     - include star-history chart only when a public GitHub repo exists.
+    - for a new repository, publish the validated baseline first, add the real chart with `scripts/add-star-history.sh`, then validate and push a second documentation commit.
 20. `## 许可证`
     - license name and copyright owner.
 21. `## 作者`
@@ -135,6 +136,7 @@ After the top structure, keep these sections in this order unless the project ty
 - English README references `en` images.
 - If no public GitHub repository exists yet, omit live CI/stars/star-history badges instead of inventing URLs.
 - If a public GitHub repository exists, include PRs, CI, Stars, Issues, PR, and Star History links.
+- Never fabricate a Star History repository URL before the repository exists. Use the post-publish script and a second commit.
 - If a public GitHub repository exists, configure repository metadata after push:
   - About description: one concise English value proposition.
   - Topics: 8-10 discovery topics.

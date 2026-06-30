@@ -50,6 +50,11 @@ Add an AI collaboration and handoff layer without changing the existing project 
 10. Run the baseline checker and README gate.
     - Use `scripts/check-project-baseline.sh --existing <project-path>` for existing projects.
     - Treat existing `node_modules`, `dist`, or `.DS_Store` as cleanup recommendations, not automatic deletion targets.
+11. When publishing a new public GitHub repository, use the two-phase release in `references/github-publish.md`:
+    - publish the validated baseline first;
+    - configure About, Topics, and Homepage;
+    - run `scripts/add-star-history.sh <project-path> <owner>/<repo>`;
+    - validate again and push a second `docs: add Star History` commit.
 
 ## Output Contract
 

@@ -162,6 +162,7 @@ The agent cannot use the word "done" until `STATE=initialization_done`.
 | `scripts/verify-assets.sh <path>` | Validate asset registry, detect orphan/missing images |
 | `scripts/check-project-baseline.sh [--existing] <path>` | Full baseline check: README gate + assets + directory |
 | `scripts/register-asset.sh <project> <image-path>` | Register a new image to `asset-manifest.json` |
+| `scripts/add-star-history.sh <project> <owner>/<repo>` | Add verified Star History links after the first public push for the required second commit |
 | `scripts/sync-omni-template.sh` | Sync the bundled `omni-platform` template to latest |
 
 ---

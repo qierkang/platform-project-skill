@@ -314,6 +314,7 @@ platform-project-skill/
 │   ├── check-project-baseline.sh     # 基线校验
 │   ├── verify-assets.sh              # 资产校验
 │   ├── register-asset.sh             # 资产注册
+│   ├── add-star-history.sh            # 首次公开发布后补 Star History
 │   └── sync-omni-template.sh         # 母版同步
 ├── examples/                         # 完整流程示例快照
 └── governance/                       # 风险记录与决策日志
@@ -331,6 +332,7 @@ platform-project-skill/
 | `scripts/verify-assets.sh <path>` | 校验资产注册表，检测孤儿图和缺失图 |
 | `scripts/check-project-baseline.sh [--existing] <path>` | 完整基线校验：README gate + 资产 + 目录结构 |
 | `scripts/register-asset.sh <project> <image-path>` | 注册新生成的图片到 `asset-manifest.json` |
+| `scripts/add-star-history.sh <project> <owner>/<repo>` | 首次公开发布后向中英文 README 写入真实 Star History，并用于二次提交 |
 | `scripts/sync-omni-template.sh` | 从上游同步 omni-platform 母版到最新版本 |
 
 ---

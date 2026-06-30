@@ -86,21 +86,55 @@ fi
 # 注意：不能把用户当前项目中文名写死进禁用词，否则会误杀真实业务项目。
 FORBIDDEN_RESIDUE_PATTERN="${PLATFORM_BASELINE_FORBIDDEN_RESIDUE_PATTERN:-/Users/[a-zA-Z0-9_.-]+/\\.codex|star-billiards-platform}"
 residue=()
-while IFS= read -r line; do
-  residue+=("$line")
-  if [[ "${#residue[@]}" -ge 30 ]]; then
-    break
-  fi
-done < <(grep -rIn \
-  --include="*.md" --include="*.yml" --include="*.yaml" \
-  --include="*.json" --include="*.ts" --include="*.tsx" \
-  --include="*.js" --include="*.jsx" --include="*.sh" \
-  --exclude-dir=node_modules --exclude-dir=dist \
-  --exclude-dir=.git --exclude-dir=graphify-out --exclude-dir=tmp \
-  --exclude-dir=governance --exclude-dir=references \
-  --exclude="check-project-baseline.sh" \
-  -E "$FORBIDDEN_RESIDUE_PATTERN" \
-  "$PROJECT_PATH" 2>/dev/null || true)
+residue_output="$(python3 - "$PROJECT_PATH" "$FORBIDDEN_RESIDUE_PATTERN" <<'PY'
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+root = Path(sys.argv[1])
+pattern = re.compile(sys.argv[2])
+allowed_suffixes = {".md", ".yml", ".yaml", ".json", ".ts", ".tsx", ".js", ".jsx", ".sh"}
+skip_dirs = {".git", "node_modules", "dist", "graphify-out", "tmp", "governance", "references"}
+
+try:
+    output = subprocess.check_output(
+        ["git", "-C", str(root), "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+        stderr=subprocess.DEVNULL,
+    )
+    candidates = [root / item.decode() for item in output.split(b"\0") if item]
+except (subprocess.CalledProcessError, FileNotFoundError):
+    candidates = list(root.rglob("*"))
+
+hits = 0
+for path in candidates:
+    try:
+        relative = path.relative_to(root)
+    except ValueError:
+        continue
+    if not path.is_file() or path.suffix not in allowed_suffixes:
+        continue
+    if any(part in skip_dirs for part in relative.parts[:-1]):
+        continue
+    if path.name == "check-project-baseline.sh":
+        continue
+    try:
+        lines = path.read_text(encoding="utf-8", errors="ignore").splitlines()
+    except OSError:
+        continue
+    for lineno, line in enumerate(lines, 1):
+        if pattern.search(line):
+            print(f"{path}:{lineno}:{line}")
+            hits += 1
+            if hits >= 30:
+                raise SystemExit(0)
+PY
+)"
+if [[ -n "$residue_output" ]]; then
+  while IFS= read -r line; do
+    residue+=("$line")
+  done <<< "$residue_output"
+fi
 
 if [[ "${#residue[@]}" -gt 0 ]]; then
   if [[ "$MODE" == "existing" ]]; then

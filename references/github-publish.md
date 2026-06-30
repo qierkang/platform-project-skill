@@ -98,3 +98,27 @@ gh api repos/<owner>/<repo>/contents/README.md -X PUT \
 ```
 
 多文件或要保持 git 历史连续时，clone 远端 → 复制改动 → commit → push。
+
+## 9. Star History 两阶段发布（新仓库强制）
+
+新仓库在首次推送前还不存在，README 不得预先伪造 Star History 链接。必须分两次提交：
+
+1. 完成 README、双语图片、社区文件、安全扫描和 baseline 校验。
+2. 创建公开仓库并首次推送。
+3. 设置 About description、Topics、Homepage。
+4. 确认仓库可公开访问后执行：
+
+```bash
+scripts/add-star-history.sh <project-path> <owner>/<repo>
+```
+
+5. 重新执行根 README、英文 README、资产和 baseline 校验。
+6. 单独提交并推送：
+
+```bash
+git add README.md docs/README_en.md
+git commit -m "docs: add Star History"
+git push
+```
+
+已有公开仓库可在首次文档提交中直接保留真实 Star History；脚本仍应执行一次以校验并统一链接格式。

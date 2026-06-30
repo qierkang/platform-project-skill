@@ -29,6 +29,7 @@ Follow the shared README style and gate:
 - `docs/README_en.md` must be a complete English counterpart, not a short summary. Keep the same open-source README structure as the root README: social preview, hero, nav, badges, main image, pain points, overview, features, comparison, workflow, quick start, modules, tech stack, architecture, directory, command reference, development guide, validation, status, FAQ, contribution, version, acknowledgements, Star History, license, and author.
 - Reference `zh-CN` images from Chinese README files and `en` images from the English README.
 - For public GitHub repositories, configure repo About metadata after push with `gh repo edit`: description, Topics, and Homepage URL. The Homepage URL should normally be the repository URL itself, e.g. `https://github.com/<owner>/<repo>`, so the GitHub About sidebar shows the clickable link.
+- When the GitHub repository does not exist yet, keep the Star History section but do not invent a live chart URL. Publish first, then run `scripts/add-star-history.sh <project-path> <owner>/<repo>`, validate both READMEs again, and push the Star History change as a second commit.
 
 ## Root README Image Paths
 
@@ -80,4 +81,12 @@ For public GitHub release, verify the repository metadata too:
 
 ```bash
 gh repo view <owner>/<repo> --json description,homepageUrl,repositoryTopics
+```
+
+After the first successful public push:
+
+```bash
+scripts/add-star-history.sh <project-path> <owner>/<repo>
+~/.claude/scripts/readme-gate.py --readme <project-path>/README.md
+~/.claude/scripts/readme-gate.py --readme <project-path>/docs/README_en.md
 ```
